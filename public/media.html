@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sloth Media</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+        //***** GET ANONYMOUS ID *****//
+        const cname = "ajs_anonymous_id";
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        //***** SET COOKIE FOR PROFILE API *****//
+        let newCookie = getCookie(cname);
+
+        console.log(newCookie);
+
+        //***** FETCH DATA FROM PROFILE API *****//
+        fetch('http://localhost:3000/userData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ anon_id: newCookie })
+        })
+            .then(response => response.json())
+            .then(data => {
+                //***** USE PROFILE API TO PERSONALIZE BANNER AND NAV BAR *****//
+                console.log(data);
+                if (data.never_converted) {
+                    let topBanner = document.querySelector(".ad-banner-top");
+                    topBanner.src = "https://prod.rockmedialibrary.com/api/public/content/cefc7747c2974a37bbdc930957ab171c?v=0b84f0ae";
+                    topBanner.style = "height: 200px; width: 728px;"
+                    topBanner.addEventListener('click', function () {
+                        // Navigate to the root directory
+                        window.location.href = '/?utm_source=google&utm_medium=display&utm_campaign=spring_2024';
+                    });
+
+                    let bottomBanner = document.querySelector(".ad-banner-bottom");
+                    bottomBanner.src = "https://prod.rockmedialibrary.com/api/public/content/cefc7747c2974a37bbdc930957ab171c?v=0b84f0ae";
+                    bottomBanner.style = "height: 220px; width: 728px; cursor: pointer;"
+
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Archivo", sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            /*background-color: #4CAF50;*/
+            color: rgb(23, 22, 22);
+            /*padding: 15px;*/
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            position: absolute;
+            top: 10px;
+            /* Adjust as needed */
+            left: 10px;
+            /* Adjust as needed */
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .signup-input-container {
+            display: flex;
+            align-items: center;
+            /* Align items vertically */
+            margin-left: auto;
+            /* Push the input field to the right */
+            margin-top: -50px;
+            margin-right: 30px;
+            /* Add some space between the menu items and the input field */
+        }
+
+        .signup-input {
+            width: 200px;
+            /* Set the width of the input field */
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 3px solid #ccc;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            outline: none;
+        }
+
+        .signup-input:focus {
+            border-color: #007bff;
+        }
+
+        /* Style for the submit button */
+        .submit-button {
+            margin-left: 10px;
+            /* Add some space between the input field and the button */
+            padding: 8px 16px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="news-header">
+
+
+            <div class="title-menu">
+                <h1 class="center-align">SLOTH NEWS</h1>
+                <img src="https://live.staticflickr.com/65535/53571179802_af31e4ae77_z.jpg"
+                    style="height: 120px; width: 120px; border-radius: 10px; margin-bottom: 30px;" alt="">
+
+                <ul class="news-menu-items">
+                    <li class="news-menu-item">HOME</li>
+                    <li class="news-menu-item">GROWTH AND MARKETING</li>
+                    <li class="news-menu-item">ENGINEERING</li>
+                    <li class="news-menu-item">COMPANY</li>
+                </ul>
+
+                <div class="signup-input-container">
+                    <!-- Signup input field -->
+                    <input type="text" class="signup-input" placeholder="Email">
+
+                    <!-- Submit button -->
+                    <button class="submit-button">Submit</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="ad-banner">
+        <img class="ad-banner-top" src="https://live.staticflickr.com/65535/53572027626_887c78ff92_c.jpg"
+            alt="Banner Ad" style="height: 120px; width: 728px; cursor: pointer;">
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://images.ctfassets.net/i8bfc4nr05rq/4pzIfNXa4szj1eLneJN6cn/a6cf10f685cab88b9d189f4732ba429c/trait_activation_v1.png?w=1495&q=75"
+                            alt="Image">
+                        <span class="card-title">Introducing Trait Activation: improve advertising ROI with better match
+                            rates</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Trait Activation empowers marketers to enhance audience match rates, personalize messaging
+                            content, and streamline identifier management, ultimately optimizing advertising ROI and
+                            reducing operational costs while ensuring privacy-conscious data use.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://images.ctfassets.net/i8bfc4nr05rq/4Op2xwJAzXa642MDhBOIm4/6a3ff841cfac54fb089201f64465df44/e1.png?w=406"
+                            alt="Image">
+                        <span class="card-title">How to Nail the Hand-Off Between Data and Marketing Teams</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Through soft skills and established processes, data teams can hand off customer data to
+                            marketers with confidence. Learn how a CDP can streamline data collection, promote
+                            collaboration, and reduce dependency on engineering for data insights.
+
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="ad-banner">
+                <img class="ad-banner-bottom" src="https://live.staticflickr.com/65535/53572027626_887c78ff92_c.jpg"
+                    alt="Banner Ad">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>

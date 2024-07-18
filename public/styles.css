@@ -1,0 +1,462 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    /* Removes underlines from all links */
+}
+
+/* Top navigation bar styling */
+.top-nav {
+    background-color: black;
+    color: white;
+    padding: 0;
+    /* Remove padding to allow the image to extend fully */
+    display: flex;
+    align-items: center;
+    /* Ensures vertical centering of nav items */
+    height: 50px;
+    /* Specify a height for the nav bar */
+}
+
+.bottom-nav a {
+    color: black;
+    /* Sets text color to black */
+    font-family: 'Helvetica', sans-serif;
+    /* Ensures Helvetica font */
+}
+
+.top-nav a {
+    color: white;
+    font-family: 'Helvetica', sans-serif;
+    padding: 0 20px;
+    /* Add horizontal padding to separate nav items */
+    line-height: 50px;
+    /* Aligns text vertically in the center */
+}
+
+.top-nav .logo,
+.top-nav a {
+    margin-right: 20px;
+}
+
+/* Bottom navigation bar styling */
+.bottom-nav {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom-nav .nav-links {
+    font-weight: 0;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.bottom-nav a,
+.bottom-nav button {
+    margin-left: 20px;
+}
+
+/* Hero Section Styling */
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fcf7f8;
+    height: 120vh;
+}
+
+#mainContent {
+    height: 120vh;
+}
+
+.exclusive-offer {
+    background: linear-gradient(to right, purple, red);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.hero h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.sm-logo {
+    height: 100%;
+    width: 50px;
+}
+
+.lg-logo {
+    height: 30px;
+    width: 275px;
+    margin-top: 10px;
+
+}
+
+/* Card Styling */
+.card-container {
+    margin-top: 90px;
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+}
+
+.hero-card {
+    background-color: #f0f0f0;
+    padding: 50px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    font-size: 32px;
+    background-color: white;
+}
+
+.hero-card p {
+    margin-top: 20px;
+    font-size: 24px;
+    background: linear-gradient(to right, purple, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+
+}
+
+.submit-btn {
+    width: 150px;
+    /* Or whatever width you prefer */
+}
+
+.hero-card.larger {
+    transform: scale(1.1);
+}
+
+
+
+.hero-card button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.top-nav .nav-link.active {
+    background-color: white;
+    color: black;
+    /* Change the color to white when active */
+}
+
+
+.bottom-nav button {
+    background-color: transparent;
+    /* Removes default background */
+    color: black;
+    /* Sets text color to match other nav links */
+    border: 1px solid black;
+    /* Adds border for button */
+    padding: 5px 10px;
+    /* Padding to make button more clickable */
+    font-family: 'Helvetica', sans-serif;
+    /* Ensures Helvetica font */
+    cursor: pointer;
+    /* Ensures cursor changes to pointer on hover */
+    transition: background-color 0.3s;
+    /* Smooth transition for background color change on hover */
+}
+
+.bottom-nav button:hover {
+    background-color: #f0f0f0;
+    /* Light grey background on hover for better user feedback */
+}
+
+.hero-card:hover {
+    transform: scale(1.15);
+    cursor: pointer;
+}
+
+.sign-in-btn {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+.hero-header {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-header span {
+    font-weight: bold;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.use-case-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.use-case-list {
+    list-style: none;
+    text-align: left;
+}
+
+.use-case-header {
+    font-size: large;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+#signInModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    /* Change this to transparent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.close-button {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.banner {
+    background-color: #c8102e;
+    /* A dark blue background, for example */
+    color: white;
+    /* White text for contrast */
+    padding: 10px 10px 1px 10px;
+    /* Padding for some spacing around the text */
+    text-align: center;
+    /* Center-align the text for better aesthetics */
+    font-size: 1.2em;
+    /* Slightly larger text for emphasis */
+}
+
+.news-header {
+    background-color: transparent;
+    /* Transparent background */
+    color: #111c2d;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #6addb2;
+}
+
+.title-menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.news-menu-items {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Style for individual menu items */
+.news-menu-item {
+    margin: 0 10px;
+}
+
+.ad-banner-top {
+    cursor: pointer;
+}
+
+.ad-banner {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 20px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 20px;
+    background-color: #c8102e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #91061d;
+}
+
+/* CSS for person icon */
+.person-icon {
+    font-size: 24px;
+    line-height: 40px;
+    color: white;
+}
+
+.person-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.details {
+    position: fixed;
+    bottom: 70px;
+    left: 20px;
+    margin-bottom: 20px;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Add shadow effect */
+    display: none;
+    z-index: 999;
+}
+
+#person-detail-list {
+    list-style: none;
+    text-align: left;
+}
+
+.fold-out {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #007bff;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Add shadow effect */
+}
+
+#modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal form {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    /* Set the width to 20% of the page */
+    height: 85%;
+    /* Set the height to 20% of the page */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* Add a shadow effect */
+    overflow: auto;
+    /* Add a scrollbar if the content is too large */
+}
+
+#modal form div {
+    display: none;
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .top-nav,
+    .bottom-nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .bottom-nav .nav-links,
+    .top-nav {
+        justify-content: center;
+    }
+}
