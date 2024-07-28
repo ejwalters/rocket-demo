@@ -23,13 +23,32 @@ var signInButton = document.getElementById('sign-in-btn');  // Replace 'signInBu
 signInButton.addEventListener('click', function () {
 
     // Handle the click event here
-    let name = document.getElementById('signInName').value;
+    let fullName = document.getElementById('signInName').value;
     let email = document.getElementById('signInEmail').value;
 
+    let nameParts = fullName.split(' ');
+
+    let firstName = nameParts[0];
+    let lastName = nameParts.slice(1).join(' ');
+
+    let preferredChannels = ['email', 'text', 'call', 'digital'];
+    let randomChannel = preferredChannels[Math.floor(Math.random() * preferredChannels.length)];
+
+
+
     analytics.identify(email, {
-        name: name,
+        name: fullName,
+        firstName: firstName,
+        lastName: lastName,
         email: email,
+        preferredChannel: randomChannel
     });
+
+    analytics.track("Sign In", {
+        name: fullName,
+        email: email
+    });
+
     console.log('Sign In button clicked');
     signInModal.style.display = 'none';
 });
@@ -184,6 +203,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     analytics.track("Hero Promo Clicked", {
                         name: modalHeader
                     });
+
+                    analytics.track("Form Started", {
+                        name: modalHeader
+                    });
                     openModal(modalHeader);
                 }
             }
@@ -263,6 +286,13 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 });
 
+function handleAbandon() {
+    analytics.track("Form Abandoned", {
+        name: 'Form Abandoned'
+    });
+    modal.style.display = 'none';
+}
+
 
 
 function handleSubmit(formType) {
@@ -287,10 +317,14 @@ function handleSubmit(formType) {
             });
             analytics.identify(email, {
                 name: firstName + ' ' + lastName,
+                firstName: firstName,
+                lastName: lastName,
                 email: email,
                 budget: budget,
                 zipcode: zipcode,
                 is_buyer: true,
+                timeline: timeline,
+                lead_status: 'engaged'
             });
             break;
         case 'sell':
@@ -309,10 +343,14 @@ function handleSubmit(formType) {
             });
             analytics.identify(email, {
                 name: firstName + ' ' + lastName,
+                firstName: firstName,
+                lastName: lastName,
                 email: email,
                 home_value: budget,
                 zipcode: zipcode,
                 is_seller: true,
+                timeline: timeline,
+                lead_status: 'engaged'
             });
             break;
         case 'both':
@@ -333,12 +371,16 @@ function handleSubmit(formType) {
             });
             analytics.identify(email, {
                 name: firstName + ' ' + lastName,
+                firstName: firstName,
+                lastName: lastName,
                 email: email,
                 home_value: homeValue,
                 zipcode: zipcode,
                 is_seller: true,
                 is_buyer: true,
-                budget: budget
+                budget: budget,
+                timeline: timeline,
+                lead_status: 'engaged'
             });
             break;
 

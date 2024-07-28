@@ -78,12 +78,21 @@
                     if (data.last_article_viewed) {
                         let dataContainer = document.getElementById('customWelcome');
                         let personDetailsName = document.getElementById('person-details-name');
+                        if(data.name == undefined || data.name == null) {
+                            dataContainer.innerHTML = "Hello again!" + " <p>See how Rocket Mortgage helps " + data.last_article_viewed + "s! Click I'm Buying below!</p>";
+                        } else {
+                            dataContainer.innerHTML = "Hello again, " + data.name + "! <p>See how Rocket Mortgage helps " + data.last_article_viewed + "s! Click I'm Buying below!</p>";
+                        }
                         personDetailsName.textContent = data.name;
-                        dataContainer.innerHTML = "<p>See how Rocket Mortgage helps " + data.last_article_viewed + "s! Click I'm Buying below!</p>";
                         let banner = document.querySelector(".banner");
                         if (data.last_product_viewed) {
                             banner.textContent = "Hi " + data.name + "!" + " Be sure to check out " + data.last_product_viewed;
                         }
+                    } else if (data.name) {
+                        let dataContainer = document.getElementById('customWelcome');
+                        let personDetailsName = document.getElementById('person-details-name');
+                        personDetailsName.textContent = data.name;
+                        dataContainer.innerHTML = "Hello again, " + data.name + "! <p>See how Rocket Mortgage helps " + data.last_article_viewed + "s! Click I'm Buying below!</p>";
                     }
 
                     //***** INITIALIZE IMAGES AND OVERLAY ELEMENTS FOR DYNAMIC DISPALY *****//
@@ -252,6 +261,7 @@
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary" onclick="handleSubmit('buy')">Submit</button>
+                <button type="button" class="btn btn-success" style="margin-top: 20px;" onclick="handleAbandon()">Abandon Form</button>
 
             </div>
 
